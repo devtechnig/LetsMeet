@@ -12,7 +12,7 @@ const Navbar = () => {
   const { theme, toggleTheme } = useTheme(); // Access theme and toggle function from ThemeContext
 
   return (
-    <nav className="fixed relative z-50 flex w-full items-center justify-between bg-lightBgColor dark:bg-darkBgColor px-6 py-4 lg:px-10">
+    <nav className="relative z-50 flex w-full items-center justify-between bg-lightBgColor dark:bg-darkBgColor px-6 py-4 lg:px-10">
       {/* Logo Link with Dynamic Icon */}
       <Link href="/" className="flex items-center gap-1">
         <Image

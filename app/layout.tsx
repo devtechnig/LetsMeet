@@ -1,5 +1,5 @@
 // app/layout.tsx
-
+import React from 'react';
 import RootLayoutClient from './RootLayoutClient';
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";

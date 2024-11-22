@@ -1,21 +1,11 @@
 "use client";
 
 import MeetingTypeList from '@/components/MeetingTypeList';
-import { useEffect, useState } from 'react';
-
 const Home = () => {
   const now = new Date();
 
   const time = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
   const date = new Intl.DateTimeFormat('en-US', { dateStyle: 'full' }).format(now);
-
-  // State to manage theme
-  const [theme, setTheme] = useState('light');
-
-  useEffect(() => {
-    const storedTheme = localStorage.getItem('theme') || 'light';
-    setTheme(storedTheme);
-  }, []);
 
   return (
     <section className="flex size-full flex-col gap-5 text-white">
