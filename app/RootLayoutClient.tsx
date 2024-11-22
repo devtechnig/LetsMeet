@@ -9,17 +9,21 @@ import "@stream-io/video-react-sdk/dist/css/styles.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "./globals.css";
 
-export default function RootLayoutClient({ children }: { children: ReactNode }) {
+interface RootLayoutClientProps {
+  children: ReactNode;
+}
+
+export default function RootLayoutClient({ children }: RootLayoutClientProps) {
   return (
     <ClerkProvider
       appearance={{
         layout: {
           socialButtonsVariant: "iconButton",
-          logoImageUrl: "/icons/logo.png",
+          logoImageUrl: "/icons/logo.png", // Ensure this path is correct
         },
       }}
     >
-      <ThemeProvider> {/* Wrap with ThemeProvider */}
+      <ThemeProvider>
         <Toaster />
         {children}
       </ThemeProvider>

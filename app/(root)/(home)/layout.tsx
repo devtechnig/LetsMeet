@@ -1,34 +1,22 @@
-"use client";
+import React from 'react';
 
-import { ReactNode, useState, useEffect } from 'react';
+interface NavbarProps {
+  toggleTheme: (newTheme: string) => void;
+}
 
-import Navbar from '@/components/Navbar';
-import Sidebar from '@/components/Sidebar';
-
-const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
-  const [theme, setTheme] = useState('light');
-
-  useEffect(() => {
-    const storedTheme = localStorage.getItem('theme') || 'light';
-    setTheme(storedTheme);
-    document.documentElement.classList.toggle('dark', storedTheme === 'dark');
-  }, []);
-
-  const themeClasses = theme === 'dark' ? 'bg-darkBgColor text-darkTextColor' : 'bg-lightBgColor text-lightTextColor';
+const Navbar: React.FC<NavbarProps> = ({ toggleTheme }) => {
+  const handleThemeToggle = () => {
+    const currentTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+    toggleTheme(currentTheme);
+    localStorage.setItem('theme', currentTheme);
+    document.documentElement.classList.toggle('dark', currentTheme === 'dark');
+  };
 
   return (
-    <main className={`relative ${themeClasses}`}>
-      <Navbar toggleTheme={(newTheme) => setTheme(newTheme)} />
-
-      <div className="flex">
-        <Sidebar className={themeClasses} />
-
-        <section className={`flex bg-lightBgColor dark:bg-darkBgColor min-h-screen flex-1 flex-col px-6 pb-6 pt-6 max-md:pb-14 sm:px-14 ${themeClasses}`}>
-          <div className="w-full">{children}</div>
-        </section>
-      </div>
-    </main>
+    <nav className="navbar">
+      <button onClick={handleThemeToggle}>Toggle Theme</button>
+    </nav>
   );
 };
 
-export default RootLayout;
+export default Navbar;
